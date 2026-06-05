@@ -105,8 +105,8 @@ html {
   height: 100vh;
   flex-shrink: 0;
   position: relative;
-  background-color: #000;
-  border: 2px solid #22c55e;
+  background-color: var(--t-bg, #000);
+  border: 1px solid var(--t-border, #22c55e);
   box-sizing: border-box;
   overflow-y: auto;
   padding: 1rem;
@@ -118,7 +118,7 @@ html {
   min-height: 0;
   flex-grow: 1;
   box-sizing: border-box;
-  background-color: #000;
+  background-color: var(--t-bg, #000);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -135,7 +135,7 @@ html {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #000;
+  background-color: var(--t-bg, #000);
   padding: 8px 16px;
   font-size: 12px;
   text-align: right;
@@ -173,7 +173,7 @@ html {
     /* Force minimum height */
     flex-shrink: 0;
     flex-grow: 0;
-    border: 2px solid #22c55e;
+    border: 1px solid var(--t-border, #22c55e);
     padding: 0.75rem;
     overflow: hidden;
     /* Hide all overflow */
@@ -217,7 +217,7 @@ html {
     min-height: 35vh;
     padding: 0.75rem;
     overflow: hidden;
-    border: 2px solid #22c55e;
+    border: 1px solid var(--t-border, #22c55e);
   }
 
   .terminal-pane {
@@ -243,7 +243,7 @@ html {
     min-height: 35vh;
     padding: 0.5rem;
     overflow: hidden;
-    border: 2px solid #22c55e;
+    border: 1px solid var(--t-border, #22c55e);
   }
 
   .terminal-pane {
@@ -274,7 +274,7 @@ html {
     min-height: 100vh;
     padding: 1rem;
     overflow: hidden;
-    border: 2px solid #22c55e;
+    border: 1px solid var(--t-border, #22c55e);
   }
 
   .terminal-pane {
@@ -335,13 +335,114 @@ html {
 
 /* Highlight color when user selects/copies text */
 ::selection {
-  background: #00ff00;
-  color: #000000;
+  background: var(--t-accent, #00ff00);
+  color: var(--t-bg, #000000);
 }
 
 ::-moz-selection {
-  background: #00ff00;
-  color: #000000;
+  background: var(--t-accent, #00ff00);
+  color: var(--t-bg, #000000);
+}
+
+/* ============================================================
+   THEMED SECTIONS
+   The full-screen panes (About / Projects / Skills / Experience /
+   Contact / Blog) use hardcoded green Tailwind utilities. Rather
+   than rewrite hundreds of inline classes, TerminalComp wraps each
+   in `.themed-section`; these substring rules remap whole utility
+   families to the theme tokens (which resolve from .app-shell).
+   One rule per family covers every shade/opacity variant.
+   ============================================================ */
+.themed-section [class*="text-green"],
+.themed-section [class*="text-emerald"] {
+  color: var(--t-accent) !important;
+}
+
+.themed-section [class*="text-gray"] {
+  color: var(--t-text-dim) !important;
+}
+
+.themed-section [class*="text-white"] {
+  color: var(--t-text) !important;
+}
+
+.themed-section [class*="border-green"],
+.themed-section [class*="border-emerald"],
+.themed-section [class*="border-white"] {
+  border-color: var(--t-accent-border) !important;
+}
+
+.themed-section [class*="border-gray"] {
+  border-color: var(--t-border) !important;
+}
+
+/* Tinted fills (green/emerald/white/gray panels, glass) → soft accent */
+.themed-section [class*="bg-green"],
+.themed-section [class*="bg-emerald"],
+.themed-section [class*="bg-white"] {
+  background-color: var(--t-accent-soft) !important;
+}
+
+.themed-section [class*="bg-gray"],
+.themed-section [class*="bg-black"] {
+  background-color: var(--t-bg-elev) !important;
+}
+
+/* Solid swatches (dots, bars, badges — no opacity suffix) → full accent.
+   Placed after the tinted rule so these win for exact tokens. */
+.themed-section [class~="bg-green-300"],
+.themed-section [class~="bg-green-400"],
+.themed-section [class~="bg-green-500"],
+.themed-section [class~="bg-emerald-400"],
+.themed-section [class~="bg-emerald-500"] {
+  background-color: var(--t-accent) !important;
+}
+
+/* Full-bleed section background (exact bg-black, no opacity) → page bg */
+.themed-section [class~="bg-black"] {
+  background-color: var(--t-bg) !important;
+}
+
+/* Gradient color stops (Tailwind's internal custom props) */
+.themed-section [class*="from-green"],
+.themed-section [class*="from-emerald"],
+.themed-section [class*="from-white"],
+.themed-section [class*="from-gray"] {
+  --tw-gradient-from: var(--t-accent-soft) !important;
+}
+
+.themed-section [class*="via-green"],
+.themed-section [class*="via-emerald"],
+.themed-section [class*="via-black"],
+.themed-section [class*="via-gray"] {
+  --tw-gradient-via: transparent !important;
+}
+
+.themed-section [class*="to-green"],
+.themed-section [class*="to-emerald"],
+.themed-section [class*="to-black"],
+.themed-section [class*="to-gray"] {
+  --tw-gradient-to: transparent !important;
+}
+
+/* Shadow + ring colors */
+.themed-section [class*="shadow-green"],
+.themed-section [class*="shadow-emerald"] {
+  /* Softer shadow so hover doesn't glow too hard */
+  --tw-shadow-color: var(--t-accent-soft) !important;
+}
+
+/* Ring → transparent: cards already have border-* themed, so a themed ring
+   would render a second, doubled border on hover. */
+.themed-section [class*="ring-green"],
+.themed-section [class*="ring-emerald"] {
+  --tw-ring-color: transparent !important;
+}
+
+/* MatrixRain / MatrixBackground canvases read as green-on-black. Fade them
+   on every non-Matrix theme so they don't fight light/clay backgrounds. */
+.app-shell:not([data-theme="matrix"]) .themed-section canvas {
+  opacity: 0.12;
 }
 
 

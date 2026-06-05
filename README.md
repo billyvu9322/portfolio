@@ -101,21 +101,6 @@ portfolio.sh/
 
 ### Steps
 
-1. **Clone the repository**
-
-```bash
-git clone https://github.com/anupPradhan0/portfolio.sh.git
-cd portfolio.sh
-```
-
-2. **Install dependencies**
-
-```bash
-npm install
-# or
-yarn install
-```
-
 3. **Set up environment variables**
 
 Create a `.env.local` file in the root directory:

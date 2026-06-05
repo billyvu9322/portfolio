@@ -37,15 +37,16 @@ export default function Tag() {
   return (
     <div
       className="identity-container"
-      style={{ height: "100%", width: "100%", position: "relative", backgroundColor: "#000" }}
+      style={{ height: "100%", width: "100%", position: "relative", backgroundColor: "transparent" }}
     >
       <Canvas
         camera={{ position: [0, 0, 13], fov: 25 }}
-        style={{ touchAction: "none", background: "#000" }}
-        gl={{ alpha: false }}
+        style={{ touchAction: "none", background: "transparent" }}
+        gl={{ alpha: true }}
         onCreated={({ gl, scene }) => {
-          gl.setClearColor(0x000000, 1);
-          scene.background = new THREE.Color(0x000000);
+          // Transparent clear so the themed sidebar background shows through.
+          gl.setClearColor(0x000000, 0);
+          scene.background = null;
           scene.environment = null;
         }}
       >

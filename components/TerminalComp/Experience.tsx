@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { durationLabel, formatMonths, monthsBetween } from "@/lib/duration";
-import { TypewriterText, MatrixRain } from "@/components/TerminalComp/effects";
+import { MatrixRain } from "@/components/TerminalComp/effects";
 import {
   CHATI_INTERN_START,
   CHATI_INTERN_END,
@@ -11,35 +11,25 @@ import {
   PROMINDS_START,
 } from "@/lib/portfolio-data";
 
-
-
 const Experience: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const [duration, setDuration] = useState(() => ({
-    chatiTotal: durationLabel(CHATI_INTERN_START, CHATI_JR_START),
-    chatiIntern: formatMonths(
-      monthsBetween(CHATI_INTERN_START, CHATI_INTERN_END)
-    ),
-    chatiJr: durationLabel(CHATI_JR_START, CHATI_JR_START),
-    promindsTotal: durationLabel(PROMINDS_START, CHATI_JR_START),
-  }));
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 0);
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    const now = new Date();
-    setDuration({
-      chatiTotal: durationLabel(CHATI_INTERN_START, now),
-      chatiIntern: formatMonths(
-        monthsBetween(CHATI_INTERN_START, CHATI_INTERN_END)
-      ),
-      chatiJr: durationLabel(CHATI_JR_START, now),
-      promindsTotal: durationLabel(PROMINDS_START, now),
-    });
-  }, []);
+  // Reference date: placeholder during SSR + hydration (keeps markup identical),
+  // real wall-clock once mounted so live "· Present" durations stay current.
+  const reference = isLoaded ? new Date() : CHATI_JR_START;
+  const duration = {
+    chatiTotal: durationLabel(CHATI_INTERN_START, reference),
+    chatiIntern: formatMonths(
+      monthsBetween(CHATI_INTERN_START, CHATI_INTERN_END),
+    ),
+    chatiJr: durationLabel(CHATI_JR_START, reference),
+    promindsTotal: durationLabel(PROMINDS_START, reference),
+  };
 
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
@@ -51,14 +41,6 @@ const Experience: React.FC = () => {
         }`}
       >
         {/* Terminal header */}
-        <div className="mb-6 sm:mb-8 border border-green-800 bg-black/50 backdrop-blur-sm rounded-lg p-3 sm:p-4">
-          <div>
-            <span className="text-green-400 font-mono text-sm sm:text-base">
-              <TypewriterText text="Loading experience..." delay={50} />
-            </span>
-          </div>
-        </div>
-
         <div className="space-y-8 sm:space-y-12">
           {/* Experience Section */}
           <section className="border border-green-800/30 bg-gradient-to-br from-green-900/10 to-black/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 lg:p-8 shadow-2xl shadow-green-900/20 hover:shadow-green-900/40 transition-all duration-500">
@@ -111,7 +93,9 @@ const Experience: React.FC = () => {
                     <h4 className="text-green-400 font-semibold text-sm sm:text-base font-mono">
                       Junior Software Developer (Lead AI Engineer)
                     </h4>
-                    <p className="text-gray-400 text-xs sm:text-sm">Full-time</p>
+                    <p className="text-gray-400 text-xs sm:text-sm">
+                      Full-time
+                    </p>
                     <p className="text-gray-500 text-xs sm:text-sm">
                       Mar 2026 — Present · {duration.chatiJr}
                     </p>
@@ -144,7 +128,9 @@ const Experience: React.FC = () => {
                     <h4 className="text-green-400 font-semibold text-sm sm:text-base font-mono">
                       Software Developer Intern
                     </h4>
-                    <p className="text-gray-400 text-xs sm:text-sm">Internship</p>
+                    <p className="text-gray-400 text-xs sm:text-sm">
+                      Internship
+                    </p>
                     <p className="text-gray-500 text-xs sm:text-sm">
                       Oct 2025 — Mar 2026 · {duration.chatiIntern}
                     </p>

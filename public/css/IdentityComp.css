@@ -6,8 +6,8 @@
   flex-direction: column;
   align-items: center;
   padding: 0;
-  background: #000;
-  color: #22c55e;
+  background: transparent;
+  color: var(--t-accent, #22c55e);
   font-family: Consolas, Menlo, monospace;
   width: 100%;
   height: 100%;
@@ -15,8 +15,8 @@
   box-sizing: border-box;
 }
 
-/* Same CRT scanlines as terminal */
-.identity-container::before {
+/* Same CRT scanlines as terminal — Matrix theme only */
+.app-shell[data-theme="matrix"] .identity-container::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -31,8 +31,8 @@
   );
 }
 
-/* Same CRT noise as terminal */
-.identity-container::after {
+/* Same CRT noise as terminal — Matrix theme only */
+.app-shell[data-theme="matrix"] .identity-container::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -434,7 +434,7 @@
 .interaction-label {
   font-family: Consolas, Menlo, monospace;
   font-size: 10px;
-  color: #22c55e;
+  color: var(--t-text-dim, #22c55e);
   margin-top: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;

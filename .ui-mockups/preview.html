@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Terminal UI mockups</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, sans-serif;
+    background: #0d0d10;
+    color: #ddd;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .label { font-size: 14px; font-weight: 600; letter-spacing: .04em; color:#bbb; margin-bottom:10px; }
+  .label small { font-weight: 400; color:#888; }
+  .mono {
+    font-family: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
+  }
+  .term {
+    width: 760px; max-width: 100%;
+    border-radius: 12px; overflow: hidden;
+    font-size: 13.5px; line-height: 1.65;
+  }
+  .bar { display:flex; align-items:center; gap:12px; padding:10px 14px; }
+  .dots { display:flex; gap:7px; }
+  .dot { width:11px; height:11px; border-radius:50%; }
+  .nav { margin-left:auto; display:flex; gap:6px; }
+  .nav button {
+    font: inherit; font-size:12px; padding:4px 10px; border-radius:7px; cursor:pointer;
+    background:transparent;
+  }
+  .body { padding:18px 20px; }
+  .row { white-space:pre-wrap; }
+  .blink { animation: bl 1.1s steps(1) infinite; }
+  @keyframes bl { 50% { opacity:0; } }
+
+  /* ============ A — CLAUDE CLAY (light) ============ */
+  .A { background:#FFFFFF; border:1px solid #E8E4DA; box-shadow:0 8px 30px rgba(0,0,0,.18); }
+  .A .bar { background:#FAF9F5; border-bottom:1px solid #EDE9DF; }
+  .A .title { font-size:12px; color:#8A857B; }
+  .A .body { background:#FFFFFF; color:#2B2A27; }
+  .A .nav button { color:#6B6862; border:1px solid #E8E4DA; }
+  .A .nav button.on { color:#C96442; border-color:#E7C3B5; background:#FBEEE8; }
+  .A .u { color:#C96442; font-weight:600; }
+  .A .sep,.A .sym { color:#A8A399; }
+  .A .dir { color:#8A6D3B; }
+  .A .cmd { color:#2B2A27; }
+  .A .dim { color:#6B6862; }
+  .A .ok { color:#4A7C59; }
+  .A .err { color:#C0492B; }
+
+  /* ============ B — AMP SOFT DARK ============ */
+  .B { background:#1C1E24; border:1px solid #2A2D36; box-shadow:0 8px 30px rgba(0,0,0,.4); }
+  .B .bar { background:#15161A; border-bottom:1px solid #2A2D36; }
+  .B .title { font-size:12px; color:#6B7280; }
+  .B .body { background:#1C1E24; color:#E6E7EA; }
+  .B .nav button { color:#9AA0AC; border:1px solid #2A2D36; }
+  .B .nav button.on { color:#7AA2F7; border-color:#3B4A6B; background:#222b3d; }
+  .B .u { color:#7AA2F7; font-weight:600; }
+  .B .sep,.B .sym { color:#6B7280; }
+  .B .dir { color:#BB9AF7; }
+  .B .cmd { color:#E6E7EA; }
+  .B .dim { color:#9AA0AC; }
+  .B .ok { color:#9ECE6A; }
+  .B .err { color:#F7768E; }
+
+  /* ============ C — MUTED FOREST (light) ============ */
+  .C { background:#FFFFFF; border:1px solid #E3E6E3; box-shadow:0 8px 30px rgba(0,0,0,.14); }
+  .C .bar { background:#FBFBFA; border-bottom:1px solid #E3E6E3; }
+  .C .title { font-size:12px; color:#7C857E; }
+  .C .body { background:#FFFFFF; color:#1A201C; }
+  .C .nav button { color:#5F6B63; border:1px solid #E3E6E3; }
+  .C .nav button.on { color:#15803D; border-color:#BBE3C8; background:#ECF7F0; }
+  .C .u { color:#15803D; font-weight:600; }
+  .C .sep,.C .sym { color:#9AA39C; }
+  .C .dir { color:#0E7490; }
+  .C .cmd { color:#1A201C; }
+  .C .dim { color:#5F6B63; }
+  .C .ok { color:#15803D; }
+  .C .err { color:#B91C1C; }
+</style>
+</head>
+<body>
+
+  <section>
+    <div class="label">A — Claude Clay <small>· warm light · clay/coral accent · brightest, premium</small></div>
+    <div class="term mono A">
+      <div class="bar">
+        <div class="dots"><span class="dot" style="background:#ED6A5E"></span><span class="dot" style="background:#F4BF4F"></span><span class="dot" style="background:#61C554"></span></div>
+        <span class="title">binhvu@billy: ~</span>
+        <div class="nav"><button class="on">about</button><button>projects</button><button>skills</button><button>blog</button></div>
+      </div>
+      <div class="body">
+<div class="row"><span class="u">binhvu@billy</span><span class="sep">:</span><span class="dir">~</span><span class="sym">$ </span><span class="cmd">whoami</span></div>
+<div class="row">Binh Vu — Software Developer (backend focus)</div>
+<div class="row"><span class="u">binhvu@billy</span><span class="sep">:</span><span class="dir">~</span><span class="sym">$ </span><span class="cmd">cd about</span></div>
+<div class="row"><span class="dim">RESTful APIs · MERN / TypeScript · AI &amp; ML</span></div>
+<div class="row"><span class="ok">✓ open to work</span>  <span class="dim">·  Bhubaneswar, India</span></div>
+<div class="row"><span class="u">binhvu@billy</span><span class="sep">:</span><span class="dir">~</span><span class="sym">$ </span><span class="err">cd nope</span></div>
+<div class="row"><span class="err">cd: nope: No such file or directory</span></div>
+<div class="row"><span class="u">binhvu@billy</span><span class="sep">:</span><span class="dir">~</span><span class="sym">$ </span><span class="blink">▋</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">B — Amp Soft Dark <small>· soft charcoal · cool blue accent · modern dark, gentle on eyes</small></div>
+    <div class="term mono B">
+      <div class="bar">
+        <div class="dots"><span class="dot" style="background:#F7768E"></span><span class="dot" style="background:#E5A458"></span><span class="dot" style="background:#9ECE6A"></span></div>
+        <span class="title">binhvu@billy: ~</span>
+        <div class="nav"><button class="on">about</button><button>projects</button><button>skills</button><button>blog</button></div>
+      </div>
+      <div class="body">
+<div class="row"><span class="u">binhvu@billy</span><span class="sep">:</span><span class="dir">~</span><span class="sym">$ </span><span class="cmd">whoami</span></div>
+<div class="row">Binh Vu — Software Developer (backend focus)</div>
+<div class="row"><span class="u">binhvu@billy</span><span class="sep">:</span><span class="dir">~</span><span class="sym">$ </span><span class="cmd">cd about</span></div>
+<div class="row"><span class="dim">RESTful APIs · MERN / TypeScript · AI &amp; ML</span></div>
+<div class="row"><span class="ok">✓ open to work</span>  <span class="dim">·  Bhubaneswar, India</span></div>
+<div class="row"><span class="u">binhvu@billy</span><span class="sep">:</span><span class="dir">~</span><span class="sym">$ </span><span class="err">cd nope</span></div>
+<div class="row"><span class="err">cd: nope: No such file or directory</span></div>
+<div class="row"><span class="u">binhvu@billy</span><span class="sep">:</span><span class="dir">~</span><span class="sym">$ </span><span class="blink">▋</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">C — Muted Forest <small>· light gray · forest green (keeps brand) · cleanest minimal change</small></div>
+    <div class="term mono C">
+      <div class="bar">
+        <div class="dots"><span class="dot" style="background:#EF4444"></span><span class="dot" style="background:#F59E0B"></span><span class="dot" style="background:#15803D"></span></div>
+        <span class="title">binhvu@billy: ~</span>
+        <div class="nav"><button class="on">about</button><button>projects</button><button>skills</button><button>blog</button></div>
+      </div>
+      <div class="body">
+<div class="row"><span class="u">binhvu@billy</span><span class="sep">:</span><span class="dir">~</span><span class="sym">$ </span><span class="cmd">whoami</span></div>
+<div class="row">Binh Vu — Software Developer (backend focus)</div>
+<div class="row"><span class="u">binhvu@billy</span><span class="sep">:</span><span class="dir">~</span><span class="sym">$ </span><span class="cmd">cd about</span></div>
+<div class="row"><span class="dim">RESTful APIs · MERN / TypeScript · AI &amp; ML</span></div>
+<div class="row"><span class="ok">✓ open to work</span>  <span class="dim">·  Bhubaneswar, India</span></div>
+<div class="row"><span class="u">binhvu@billy</span><span class="sep">:</span><span class="dir">~</span><span class="sym">$ </span><span class="err">cd nope</span></div>
+<div class="row"><span class="err">cd: nope: No such file or directory</span></div>
+<div class="row"><span class="u">binhvu@billy</span><span class="sep">:</span><span class="dir">~</span><span class="sym">$ </span><span class="blink">▋</span></div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

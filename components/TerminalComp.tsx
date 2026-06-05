@@ -16,6 +16,8 @@ import {
   searchBlogPosts,
   type BlogSearchPost,
 } from "@/lib/blog-search";
+import { THEMES, THEME_IDS, isThemeId } from "@/lib/themes";
+import { useTheme } from "@/context/ThemeContext";
 import {
   HOME_DIR,
   FILE_CONTENTS,
@@ -312,6 +314,7 @@ const HELP_ITEMS: HelpItem[] = [
   { type: "command", command: "banner <text>", description: "Print text in large ASCII." },
   { type: "command", command: "yes [string]", description: "Repeat string (limited)." },
   { type: "command", command: "ai <question>", description: "Chat with AI assistant (10 requests/day)." },
+  { type: "command", command: "theme [name]", description: "List color themes or switch (e.g. theme amp-dark)." },
   { type: "command", command: "clear", description: "Clear the terminal screen." },
   { type: "command", command: "exit", description: "Close this tab/window." },
   { type: "title", text: "System & files:" },
@@ -378,6 +381,7 @@ const TAB_COMPLETIONS: string[] = [
   "banner",
   "yes",
   "clear",
+  "theme",
   "blog",
   "exit",
   "uptime",
@@ -426,6 +430,7 @@ const COMMAND_NAMES = [
   "blog",
   "exit",
   "ai",
+  "theme",
   "neofetch",
   "fortune",
   "cowsay",
@@ -489,6 +494,32 @@ const CD_SECTIONS = [
   "contact",
 ];
 
+// Command descriptions for the live suggestion popup, keyed by first token.
+const DESC_BY_CMD: Record<string, string> = {};
+for (const it of HELP_ITEMS) {
+  if (it.type === "command" && it.command) {
+    const key = it.command.split(/[\s[<]/)[0];
+    if (!(key in DESC_BY_CMD)) DESC_BY_CMD[key] = it.description ?? "";
+  }
+}
+
+interface CmdSuggestion {
+  name: string;
+  desc: string;
+}
+
+/** Live command suggestions while typing the first word (Claude-Code style).
+ *  Triggers on a single token (no space). A lone "/" lists everything. */
+function getCommandSuggestions(input: string): CmdSuggestion[] {
+  const raw = input.trimStart();
+  if (!raw || /\s/.test(raw)) return [];
+  const prefix = raw.replace(/^\/+/, "").toLowerCase();
+  const list = prefix
+    ? COMMAND_NAMES.filter((c) => c.toLowerCase().startsWith(prefix))
+    : COMMAND_NAMES;
+  return list.map((c) => ({ name: c, desc: DESC_BY_CMD[c.split(" ")[0]] ?? "" }));
+}
+
 function getCommonPrefix(strings: string[]): string {
   if (strings.length === 0) return "";
   let i = 0;
@@ -534,10 +565,14 @@ function getTabCompletion(
     };
   }
 
-  if (isCompletingArg && (command === "cd" || command === "cat" || command === "man")) {
+  if (
+    isCompletingArg &&
+    (command === "cd" || command === "cat" || command === "man" || command === "theme")
+  ) {
     const list =
       command === "cd" ? CD_SECTIONS
       : command === "cat" ? [...HOME_DIR]
+      : command === "theme" ? [...THEME_IDS]
       : COMMAND_NAMES;
     const matches = list.filter((s) => String(s).toLowerCase().startsWith(argPrefix));
     if (matches.length === 0) return { matches: [], setLine: input, isPartial: false };
@@ -633,6 +668,7 @@ const Welcome: React.FC = () => {
   );
 };
 
+// Output of the `theme` command: clickable list of themes, current one marked.
 const MAX_COMMAND_HISTORY = 50;
 
 const PWD_DISPLAY = "/home/anup";
@@ -650,6 +686,10 @@ export default function Terminal({
   const [input, setInput] = useState<string>("");
   const [cwd, setCwd] = useState<string>("~");
   const [tabSuggestions, setTabSuggestions] = useState<string[] | null>(null);
+  const [cmdSuggest, setCmdSuggest] = useState<CmdSuggestion[]>([]);
+  const [cmdIndex, setCmdIndex] = useState<number>(0);
+  const [themePickerOpen, setThemePickerOpen] = useState<boolean>(false);
+  const [themeIndex, setThemeIndex] = useState<number>(0);
   const [isFirstUserCommand, setIsFirstUserCommand] = useState<boolean>(true);
   const [isAILoading, setIsAILoading] = useState<boolean>(false);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
@@ -658,6 +698,8 @@ export default function Terminal({
   const terminalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [blogPostsCache, setBlogPostsCache] = useState<BlogSearchPost[]>([]);
+  // Theme is owned by AppShell (so the sidebar follows it too) and shared here.
+  const { theme, setTheme: applyTheme } = useTheme();
 
   const user = "binhvu";
   const host = "billy";
@@ -800,7 +842,11 @@ export default function Terminal({
   ): Promise<void> => {
     const trimmedCmd = cmd.trim();
 
-    if (!isAuto && blogRoute && trimmedCmd) {
+    // `theme` is a pure UI command — handle it in place even on /blog routes
+    // instead of redirecting back to the home terminal.
+    const isThemeCmd = /^\/?theme(\s|$)/i.test(trimmedCmd);
+
+    if (!isAuto && blogRoute && trimmedCmd && !isThemeCmd) {
       redirectFromBlogRoute(trimmedCmd);
       return;
     }
@@ -857,7 +903,8 @@ export default function Terminal({
     }
 
     const parts = trimmedCmd.split(/\s+/);
-    const commandName = parts[0]?.toLowerCase() ?? "";
+    // Allow a leading slash (e.g. `/theme`, Claude-Code style) on any command.
+    const commandName = (parts[0]?.toLowerCase() ?? "").replace(/^\/+/, "");
     const args = parts.slice(1);
 
     // cd [dir] — changes the working "directory" and may navigate (side effects)
@@ -875,11 +922,11 @@ export default function Terminal({
       }
       const sectionMap: Record<string, React.ReactNode> = {
         welcome: <Welcome />,
-        about: <About />,
-        projects: <Projects />,
-        skills: <Skills />,
-        experience: <Experience />,
-        contact: <Contact />,
+        about: <div className="themed-section"><About /></div>,
+        projects: <div className="themed-section"><Projects /></div>,
+        skills: <div className="themed-section"><Skills /></div>,
+        experience: <div className="themed-section"><Experience /></div>,
+        contact: <div className="themed-section"><Contact /></div>,
       };
       if (sectionMap[dir] !== undefined) {
         setCwd("~");
@@ -992,6 +1039,33 @@ export default function Terminal({
       whoami: () => user,
       date: () => new Date().toString(),
       exit: () => "Close this tab to exit.",
+
+      // Color theme: no arg -> open navigable picker; arg -> switch + persist.
+      theme: (a) => {
+        const arg = a[0]?.toLowerCase();
+        if (!arg || arg === "list" || arg === "-l") {
+          const cur = THEMES.findIndex((t) => t.id === theme);
+          setThemeIndex(cur < 0 ? 0 : cur);
+          setThemePickerOpen(true);
+          return (
+            <span>
+              Pick a theme — <strong>↑/↓</strong> then <strong>Enter</strong>, or
+              click.
+            </span>
+          );
+        }
+        if (isThemeId(arg)) {
+          applyTheme(arg);
+          return (
+            <span>
+              Theme changed to <strong>{arg}</strong>.
+            </span>
+          );
+        }
+        return stderr(
+          `theme: unknown theme '${a[0]}'. Run 'theme' to see the list.`
+        );
+      },
 
       // --- System info ---
       uptime: () => getUptime(),
@@ -1130,10 +1204,31 @@ export default function Terminal({
     setHistory(newHist);
   };
 
+  // Tab: fill the command + a space so the user can keep typing args.
+  const fillCmdSuggest = (name: string): void => {
+    setInput(name + " ");
+    setCmdSuggest([]);
+    setCmdIndex(0);
+    inputRef.current?.focus();
+  };
+
+  // Enter / click: pick AND run immediately — no extra Enter needed.
+  const runCmdSuggest = (name: string): void => {
+    if (isAILoading) return;
+    setCmdSuggest([]);
+    setCmdIndex(0);
+    setTabSuggestions(null);
+    setInput("");
+    processCommand(name);
+    inputRef.current?.focus();
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (isAILoading) return;
     setTabSuggestions(null);
+    setCmdSuggest([]);
+    setThemePickerOpen(false);
     processCommand(input);
     setInput("");
   };
@@ -1194,6 +1289,59 @@ export default function Terminal({
       setHistoryIndex(-1);
       return;
     }
+    // Theme picker intercepts nav keys while open.
+    if (themePickerOpen) {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setThemeIndex((i) => (i + 1) % THEMES.length);
+        return;
+      }
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setThemeIndex((i) => (i - 1 + THEMES.length) % THEMES.length);
+        return;
+      }
+      if (e.key === "Enter" || e.key === "Tab") {
+        e.preventDefault();
+        applyTheme(THEMES[themeIndex]?.id ?? THEMES[0].id);
+        setThemePickerOpen(false);
+        return;
+      }
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setThemePickerOpen(false);
+        return;
+      }
+    }
+    // Command suggestion popup intercepts nav keys while open.
+    if (cmdSuggest.length > 0) {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setCmdIndex((i) => (i + 1) % cmdSuggest.length);
+        return;
+      }
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setCmdIndex((i) => (i - 1 + cmdSuggest.length) % cmdSuggest.length);
+        return;
+      }
+      const picked = cmdSuggest[cmdIndex]?.name ?? cmdSuggest[0].name;
+      if (e.key === "Enter") {
+        e.preventDefault();
+        runCmdSuggest(picked);
+        return;
+      }
+      if (e.key === "Tab") {
+        e.preventDefault();
+        fillCmdSuggest(picked);
+        return;
+      }
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setCmdSuggest([]);
+        return;
+      }
+    }
     if (e.key === "ArrowUp") {
       e.preventDefault();
       if (commandHistory.length === 0) return;
@@ -1247,11 +1395,13 @@ export default function Terminal({
           {
             type: "output",
             content: (
-              <Blog
-                slug={initialBlogSlug}
-                initialPost={initialBlogPost}
-                syncUrls
-              />
+              <div className="themed-section">
+                <Blog
+                  slug={initialBlogSlug}
+                  initialPost={initialBlogPost}
+                  syncUrls
+                />
+              </div>
             ),
           },
         ]);
@@ -1349,6 +1499,66 @@ export default function Terminal({
           </div>
         ))}
         <form onSubmit={handleSubmit} className="input-form">
+          {themePickerOpen && (
+            <div className="cmd-suggest" role="listbox" aria-label="Themes">
+              <div className="cmd-suggest-header">Themes</div>
+              <ul className="cmd-suggest-list">
+                {THEMES.map((t, i) => (
+                  <li
+                    key={t.id}
+                    role="option"
+                    aria-selected={i === themeIndex}
+                    data-active={i === themeIndex}
+                    className="cmd-suggest-item"
+                    onMouseEnter={() => setThemeIndex(i)}
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      applyTheme(t.id);
+                      setThemePickerOpen(false);
+                    }}
+                  >
+                    <span className="theme-item-marker" aria-hidden="true">
+                      {t.id === theme ? "●" : "○"}
+                    </span>
+                    <span className="cmd-suggest-name">{t.id}</span>
+                    <span className="cmd-suggest-desc">
+                      {t.label} — {t.blurb}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {cmdSuggest.length > 0 && (
+            <div
+              className="cmd-suggest"
+              role="listbox"
+              aria-label="Command suggestions"
+            >
+              <div className="cmd-suggest-header">Commands</div>
+              <ul className="cmd-suggest-list">
+                {cmdSuggest.map((s, i) => (
+                  <li
+                    key={s.name}
+                    role="option"
+                    aria-selected={i === cmdIndex}
+                    data-active={i === cmdIndex}
+                    className="cmd-suggest-item"
+                    onMouseEnter={() => setCmdIndex(i)}
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      runCmdSuggest(s.name);
+                    }}
+                  >
+                    <span className="cmd-suggest-name">{s.name}</span>
+                    {s.desc && (
+                      <span className="cmd-suggest-desc">{s.desc}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <label htmlFor="terminal-input" className="sr-only">
             Terminal command input
           </label>
@@ -1364,9 +1574,13 @@ export default function Terminal({
               type="text"
               value={input}
               onChange={(e) => {
-                setInput(e.target.value);
+                const v = e.target.value;
+                setInput(v);
                 setHistoryIndex(-1);
                 setTabSuggestions(null);
+                setCmdSuggest(getCommandSuggestions(v));
+                setCmdIndex(0);
+                setThemePickerOpen(false);
               }}
               onKeyDown={handleKeyDown}
               className="terminal-input"

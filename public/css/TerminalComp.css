@@ -11,26 +11,151 @@
   }
 }
 
+/* ============================================================
+   THEME TOKENS
+   Base values below = "Claude Clay Dark" (the default theme).
+   Other themes override these via [data-theme="..."] blocks.
+   The `data-theme` attribute is set on .terminal-container by
+   TerminalComp via the `theme` / `/theme` command. Because the
+   base equals the default theme, first paint never flashes.
+   ============================================================ */
+.app-shell {
+  --terminal-font: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
+    "Liberation Mono", Monaco, "DejaVu Sans Mono", monospace;
+
+  /* Claude Clay Dark — warm dark, coral accent */
+  --t-bg: #262624;
+  --t-bg-elev: #2f2e2b;
+  --t-border: #3d3c39;
+  --t-text: #eceae3;
+  --t-text-dim: #a6a299;
+  --t-user: #d97757;
+  --t-dir: #c99a5b;
+  --t-punct: #8b8782;
+  --t-cmd: #eceae3;
+  --t-accent: #d97757;
+  --t-accent-2: #e0926f;
+  --t-accent-soft: rgba(217, 119, 87, 0.14);
+  --t-accent-border: rgba(217, 119, 87, 0.5);
+  --t-success: #7fa67f;
+  --t-error: #e0795f;
+  --t-cursor: #d97757;
+  --t-code-bg: rgba(217, 119, 87, 0.1);
+  --t-code-border: rgba(217, 119, 87, 0.3);
+  --t-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* Claude Clay Light — warm parchment, coral accent */
+.app-shell[data-theme="claude-clay-light"] {
+  --t-bg: #faf9f5;
+  --t-bg-elev: #ffffff;
+  --t-border: #e8e4da;
+  --t-text: #2b2a27;
+  --t-text-dim: #6b6862;
+  --t-user: #c96442;
+  --t-dir: #8a6d3b;
+  --t-punct: #a8a399;
+  --t-cmd: #2b2a27;
+  --t-accent: #c96442;
+  --t-accent-2: #b4502f;
+  --t-accent-soft: rgba(201, 100, 66, 0.1);
+  --t-accent-border: rgba(201, 100, 66, 0.4);
+  --t-success: #4a7c59;
+  --t-error: #c0492b;
+  --t-cursor: #c96442;
+  --t-code-bg: rgba(201, 100, 66, 0.08);
+  --t-code-border: rgba(201, 100, 66, 0.25);
+  --t-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Amp Soft Dark — soft charcoal, cool blue accent */
+.app-shell[data-theme="amp-dark"] {
+  --t-bg: #1c1e24;
+  --t-bg-elev: #22242b;
+  --t-border: #2a2d36;
+  --t-text: #e6e7ea;
+  --t-text-dim: #9aa0ac;
+  --t-user: #7aa2f7;
+  --t-dir: #bb9af7;
+  --t-punct: #6b7280;
+  --t-cmd: #e6e7ea;
+  --t-accent: #7aa2f7;
+  --t-accent-2: #9dbbfb;
+  --t-accent-soft: rgba(122, 162, 247, 0.14);
+  --t-accent-border: rgba(122, 162, 247, 0.45);
+  --t-success: #9ece6a;
+  --t-error: #f7768e;
+  --t-cursor: #7aa2f7;
+  --t-code-bg: rgba(122, 162, 247, 0.1);
+  --t-code-border: rgba(122, 162, 247, 0.3);
+  --t-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Muted Forest — light gray, forest green (keeps brand) */
+.app-shell[data-theme="forest-light"] {
+  --t-bg: #fbfbfa;
+  --t-bg-elev: #ffffff;
+  --t-border: #e3e6e3;
+  --t-text: #1a201c;
+  --t-text-dim: #5f6b63;
+  --t-user: #15803d;
+  --t-dir: #0e7490;
+  --t-punct: #9aa39c;
+  --t-cmd: #1a201c;
+  --t-accent: #15803d;
+  --t-accent-2: #0e7490;
+  --t-accent-soft: rgba(21, 128, 61, 0.1);
+  --t-accent-border: rgba(21, 128, 61, 0.4);
+  --t-success: #15803d;
+  --t-error: #b91c1c;
+  --t-cursor: #15803d;
+  --t-code-bg: rgba(21, 128, 61, 0.08);
+  --t-code-border: rgba(21, 128, 61, 0.25);
+  --t-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Matrix — the original neon-green CRT look */
+.app-shell[data-theme="matrix"] {
+  --t-bg: #000000;
+  --t-bg-elev: #000000;
+  --t-border: #22c55e;
+  --t-text: #ffffff;
+  --t-text-dim: #9ca3af;
+  --t-user: #3b82f6;
+  --t-dir: #a78bfa;
+  --t-punct: #e5e7eb;
+  --t-cmd: #22c55e;
+  --t-accent: #22c55e;
+  --t-accent-2: #4ade80;
+  --t-accent-soft: rgba(16, 185, 129, 0.15);
+  --t-accent-border: #22c55e;
+  --t-success: #22c55e;
+  --t-error: #ef4444;
+  --t-cursor: #12e860;
+  --t-code-bg: rgba(20, 83, 45, 0.3);
+  --t-code-border: rgba(22, 101, 52, 0.5);
+  --t-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
 /* Main container for the entire terminal window */
 /* Monospace: every character same width so columns stay aligned and it looks like a real terminal */
 .terminal-container {
-  --terminal-font: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
-    "Liberation Mono", Monaco, "DejaVu Sans Mono", monospace;
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   min-height: 0;
-  background: #000;
+  background: var(--t-bg);
+  color: var(--t-text);
   font-family: var(--terminal-font);
   font-size: 0.875rem;
-  border: 2px solid #22c55e;
+  border: 1px solid var(--t-border);
   overflow: hidden;
 }
 
-/* CRT scanlines: subtle horizontal lines overlay (old monitor look) */
-.terminal-container::before {
+/* CRT scanlines + noise: only on the Matrix theme (modern themes stay clean) */
+.app-shell[data-theme="matrix"] .terminal-container::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -43,8 +168,7 @@
       rgba(0, 0, 0, 0.12) 2px);
 }
 
-/* CRT noise: light texture overlay (physical screen grain) */
-.terminal-container::after {
+.app-shell[data-theme="matrix"] .terminal-container::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -63,8 +187,8 @@
   display: flex;
   align-items: center;
   padding: 0.5rem;
-  background: #000;
-  border-bottom: 2px solid #22c55e;
+  background: var(--t-bg-elev);
+  border-bottom: 1px solid var(--t-border);
 }
 
 /* Window control dots */
@@ -95,7 +219,7 @@
 .terminal-nav {
   flex-grow: 1;
   text-align: center;
-  color: #22c55e;
+  color: var(--t-accent);
 }
 
 /* Buttons within the navigation bar */
@@ -104,28 +228,22 @@
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #10b981;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: var(--t-text-dim);
+  background: transparent;
+  border: 1px solid var(--t-border);
   border-radius: 0.5rem;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
 }
 
 .nav-button:hover {
-  background: rgba(16, 185, 129, 0.15);
-  border-color: #22c55e;
-  color: #34d399;
-  box-shadow:
-    0 0 12px rgba(34, 197, 94, 0.5),
-    0 2px 8px rgba(0, 0, 0, 0.2);
+  background: var(--t-accent-soft);
+  border-color: var(--t-accent-border);
+  color: var(--t-accent);
   transform: translateY(-1px);
 }
 
 .nav-button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Main content area of the terminal */
@@ -144,33 +262,33 @@
   margin-bottom: 0.5rem;
 }
 
-/* Stderr: error output (e.g. command not found) - red so it reads as "that didn't work" */
+/* Stderr: error output (e.g. command not found) - reads as "that didn't work" */
 .terminal-stderr {
-  color: #ef4444;
+  color: var(--t-error);
   font-family: inherit;
   font-size: inherit;
 }
 
 /* Prompt styles */
 .prompt-user {
-  color: #3b82f6;
+  color: var(--t-user);
 }
 
 .prompt-separator,
 .prompt-symbol {
-  color: #e5e7eb;
+  color: var(--t-punct);
 }
 
 .prompt-directory {
-  color: #a78bfa;
+  color: var(--t-dir);
 }
 
 .command-text {
-  color: #22c55e;
+  color: var(--t-cmd);
 }
 
 .output-line {
-  color: #ffffff;
+  color: var(--t-text);
 }
 
 .pre-output {
@@ -179,7 +297,7 @@
   font-size: inherit;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-  color: #e5e7eb;
+  color: var(--t-text);
 }
 
 /* Neofetch: responsive two-column layout */
@@ -191,7 +309,7 @@
   margin: 0.5rem 0;
   font-family: var(--terminal-font);
   font-size: 0.8rem;
-  color: #e5e7eb;
+  color: var(--t-text);
 }
 
 .neofetch-art {
@@ -202,7 +320,7 @@
   margin: 0;
   font-size: 0.7rem;
   line-height: 1.2;
-  color: #22c55e;
+  color: var(--t-accent);
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   letter-spacing: 0.02em;
@@ -214,13 +332,13 @@
 }
 
 .neofetch-user {
-  color: #22c55e;
+  color: var(--t-accent);
   font-weight: 600;
   margin-bottom: 0.15rem;
 }
 
 .neofetch-divider {
-  color: #22c55e;
+  color: var(--t-accent);
   margin-bottom: 0.35rem;
   font-size: 0.75em;
 }
@@ -240,13 +358,13 @@
 
 .neofetch-row dt {
   margin: 0;
-  color: #9ca3af;
+  color: var(--t-text-dim);
   font-weight: 500;
 }
 
 .neofetch-row dd {
   margin: 0;
-  color: #e5e7eb;
+  color: var(--t-text);
 }
 
 @media (max-width: 380px) {
@@ -262,7 +380,7 @@
 
 /* Help command output */
 .help-command {
-  color: #ffffff;
+  color: var(--t-text);
 }
 
 .help-command p {
@@ -280,14 +398,147 @@
 }
 
 .help-command li span {
-  color: #00ff00;
+  color: var(--t-accent);
   font-weight: bold;
+}
+
+/* ===== Theme picker (output of the `theme` command) ===== */
+.theme-list {
+  margin: 0.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.theme-list-label {
+  color: var(--t-text-dim);
+  margin-bottom: 0.35rem;
+}
+
+.theme-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid transparent;
+  border-radius: 0.4rem;
+  background: transparent;
+  color: var(--t-text);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.theme-item:hover {
+  background: var(--t-accent-soft);
+  border-color: var(--t-accent-border);
+}
+
+.theme-item[data-current="true"] {
+  border-color: var(--t-accent-border);
+  background: var(--t-accent-soft);
+}
+
+.theme-item-marker {
+  color: var(--t-accent);
+}
+
+.theme-item-id {
+  color: var(--t-accent);
+  font-weight: 600;
+  min-width: 10rem;
+}
+
+.theme-item-blurb {
+  color: var(--t-text-dim);
+}
+
+@media (max-width: 480px) {
+  .theme-item {
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .theme-item-id {
+    min-width: 0;
+  }
 }
 
 /* Input form and block cursor */
 .input-form {
   display: flex;
   align-items: center;
+  position: relative;
+}
+
+/* ===== Live slash-command suggestion popup (Claude-Code style) ===== */
+.cmd-suggest {
+  position: absolute;
+  bottom: calc(100% + 0.4rem);
+  left: 0;
+  width: min(30rem, 95%);
+  max-height: 16rem;
+  overflow-y: auto;
+  background: var(--t-bg-elev);
+  border: 1px solid var(--t-border);
+  border-radius: 0.6rem;
+  box-shadow: var(--t-shadow);
+  z-index: 30;
+  padding: 0.35rem;
+}
+
+.cmd-suggest-header {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--t-text-dim);
+  padding: 0.3rem 0.5rem 0.4rem;
+}
+
+.cmd-suggest-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cmd-suggest-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.cmd-suggest-item[data-active="true"] {
+  background: var(--t-accent-soft);
+}
+
+.cmd-suggest-name {
+  color: var(--t-accent);
+  font-weight: 600;
+  min-width: 7rem;
+  flex-shrink: 0;
+}
+
+.cmd-suggest-desc {
+  color: var(--t-text-dim);
+  font-size: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .cmd-suggest {
+    width: 100%;
+  }
+
+  .cmd-suggest-desc {
+    display: none;
+  }
 }
 
 .input-area {
@@ -302,19 +553,19 @@
 .input-value {
   font-family: inherit;
   font-size: inherit;
-  color: #22c55e;
+  color: var(--t-cmd);
   white-space: pre;
   min-height: 1.25em;
   line-height: 1.25;
 }
 
-/* Solid block cursor that pulses (opacity 0 ↔ 1) - dark green */
+/* Solid block cursor that pulses (opacity 0 ↔ 1) */
 .cursor-block {
   display: inline-block;
   width: 0.6em;
   min-width: 8px;
   height: 1.1em;
-  background: #12e860;
+  background: var(--t-cursor);
   vertical-align: middle;
   margin-left: 1px;
   animation: blink-cursor 1s step-end infinite;
@@ -436,15 +687,15 @@
 .tab-suggestions {
   margin-top: 0.5rem;
   padding: 0.5rem 0.75rem;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid #22c55e;
+  background: var(--t-bg-elev);
+  border: 1px solid var(--t-accent-border);
   border-radius: 0.25rem;
   font-family: var(--terminal-font);
   font-size: 0.8rem;
 }
 
 .tab-suggestions-label {
-  color: #22c55e;
+  color: var(--t-accent);
   margin-bottom: 0.35rem;
   font-weight: 600;
 }
@@ -461,7 +712,7 @@
 }
 
 .tab-suggestions-item {
-  color: #e5e7eb;
+  color: var(--t-text);
 }
 
 .sr-only {
@@ -478,8 +729,8 @@
 
 .ai-response {
   padding: 1rem;
-  background: rgba(0, 255, 200, 0.05);
-  border-left: 3px solid rgba(0, 255, 21, 0.5);
+  background: var(--t-accent-soft);
+  border-left: 3px solid var(--t-accent-border);
   border-radius: 0.5rem;
   margin: 0.5rem 0;
 }
@@ -503,7 +754,7 @@
 .terminal-blog-content h2,
 .terminal-blog-content h3,
 .terminal-blog-content h4 {
-  color: #4ade80;
+  color: var(--t-accent-2);
   font-weight: 700;
   margin-top: 1.25rem;
   margin-bottom: 0.5rem;
@@ -553,10 +804,10 @@
 }
 
 .terminal-blog-content a {
-  color: #4ade80;
+  color: var(--t-accent-2);
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: rgba(22, 101, 52, 0.6);
+  text-decoration-color: var(--t-accent-border);
   transition: color 0.15s, text-decoration-color 0.15s;
   opacity: 1;
 }
@@ -568,8 +819,8 @@
 }
 
 .terminal-blog-content a:hover {
-  color: #86efac;
-  text-decoration-color: rgba(74, 222, 128, 0.8);
+  color: var(--t-accent);
+  text-decoration-color: var(--t-accent);
 }
 
 .terminal-blog-content ul,
@@ -588,15 +839,15 @@
 .terminal-blog-content code {
   padding: 0.1rem 0.4rem;
   border-radius: 0.25rem;
-  background: rgba(20, 83, 45, 0.3);
-  border: 1px solid rgba(22, 101, 52, 0.5);
-  color: #86efac;
+  background: var(--t-code-bg);
+  border: 1px solid var(--t-code-border);
+  color: var(--t-accent-2);
   font-size: 0.85em;
 }
 
 .terminal-blog-content pre {
-  background: rgba(17, 24, 39, 0.6);
-  border: 1px solid rgba(22, 101, 52, 0.4);
+  background: var(--t-bg-elev);
+  border: 1px solid var(--t-code-border);
   border-radius: 0.5rem;
   padding: 1rem;
   margin: 1rem 0;
@@ -611,18 +862,18 @@
 }
 
 .terminal-blog-content blockquote {
-  border-left: 3px solid rgba(21, 128, 61, 0.6);
+  border-left: 3px solid var(--t-accent-border);
   padding-left: 1rem;
   margin: 1rem 0;
-  color: #9ca3af;
+  color: var(--t-text-dim);
   font-style: italic;
 }
 
 .terminal-blog-content hr {
   border: 0;
-  border-top: 1px solid rgba(22, 101, 52, 0.4);
+  border-top: 1px solid var(--t-border);
   margin: 1.5rem 0;
 }
 
-.terminal-blog-content strong { color: #d1fae5; }
-.terminal-blog-content em { color: #d1d5db; }
+.terminal-blog-content strong { color: var(--t-text); }
+.terminal-blog-content em { color: var(--t-text-dim); }
