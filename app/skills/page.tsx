@@ -9,11 +9,11 @@ import {
 // Enhanced SEO Metadata
 export const metadata: Metadata = {
   metadataBase: new URL("https://billyvu.nimo.io.vn"),
-  title: "Skills & Tech Stack | MERN Stack Developer",
+  title: "Skills & Tech Stack | Full-stack Developer",
   description:
-    "Comprehensive technical skills of Binh Vu including JavaScript, TypeScript, Python, React, Node.js, MongoDB, Express, Next.js, Docker, TensorFlow, and modern web development tools. Full-stack MERN developer from Bhubaneswar, India with AI/ML capabilities.",
+    "Technical skills of Binh Vu covering agentic workflows, multi-tenant architecture, .NET, Node.js, React TS, Next.js, SQL and NoSQL databases, cloud infrastructure, CI/CD, Shopify Plus, and Wix.",
   keywords: [
-    "MERN Stack Skills",
+    "Agentic Workflow Skills",
     "JavaScript Developer",
     "TypeScript Expert",
     "React Developer",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   creator: "Binh Vu",
   publisher: "Binh Vu",
   openGraph: {
-    title: "Skills & Tech Stack | MERN Stack Developer",
+    title: "Skills & Tech Stack | Full-stack Developer",
     description:
-      "Expert in MERN stack, TypeScript, Python, AI/ML tools, and modern web development technologies. Full-stack developer from Bhubaneswar, India.",
+      "Expertise in AI-augmented architecture, backend systems, cloud infrastructure, modern frontend development, and e-commerce platforms.",
     type: "website",
     url: "https://billyvu.nimo.io.vn/skills",
     siteName: "Binh Vu - Developer Portfolio",
@@ -59,9 +59,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@AnupPradhan0",
     creator: "@AnupPradhan0",
-    title: "Skills & Tech Stack | MERN Stack Developer",
+    title: "Skills & Tech Stack | Full-stack Developer",
     description:
-      "Full-stack expertise in MERN, TypeScript, Python, and machine learning. Comprehensive technical skills portfolio.",
+      "Full-stack expertise across .NET, Node.js, React TS, cloud systems, agentic workflows, and e-commerce platforms.",
     images: ["https://billyvu.nimo.io.vn/images/logo.jpg"],
   },
   robots: {
@@ -157,16 +157,6 @@ const DeployIcon = () => (
   </svg>
 );
 
-const BrainIcon = () => (
-  <svg
-    fill="currentColor"
-    viewBox="0 0 24 24"
-    aria-hidden="true"
-  >
-    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-  </svg>
-);
-
 // Enhanced JSON-LD Structured Data
 const structuredData = {
   "@context": "https://schema.org",
@@ -175,15 +165,14 @@ const structuredData = {
   url: "https://billyvu.nimo.io.vn",
   image: "https://billyvu.nimo.io.vn/images/logo.jpg",
   knowsAbout: [
-    ...skillsData.languages,
+    ...skillsData.ai_architecture,
     ...skillsData.frontend,
     ...skillsData.backend,
     ...skillsData.databases,
-    ...skillsData.tools,
-    ...skillsData.deployment,
-    ...skillsData.ai_ml,
+    ...skillsData.cloud_devops,
+    ...skillsData.ecommerce_cms,
   ],
-  jobTitle: "Full Stack MERN Developer",
+  jobTitle: "Full-stack Developer",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Bhubaneswar",
@@ -301,46 +290,40 @@ const TerminalWindow = ({
 export default function Skills() {
   const categories: CategoryConfig[] = [
     {
-      key: "languages",
-      title: "Languages",
+      key: "ai_architecture",
+      title: "AI & Architecture",
       icon: <CodeIcon />,
-      skills: skillsData.languages,
-    },
-    {
-      key: "frontend",
-      title: "Frontend",
-      icon: <LayersIcon />,
-      skills: skillsData.frontend,
+      skills: skillsData.ai_architecture,
     },
     {
       key: "backend",
-      title: "Backend",
+      title: "Backend Development",
       icon: <ServerIcon />,
       skills: skillsData.backend,
     },
     {
+      key: "frontend",
+      title: "Frontend Development",
+      icon: <LayersIcon />,
+      skills: skillsData.frontend,
+    },
+    {
       key: "databases",
-      title: "Databases",
+      title: "Databases & Caching",
       icon: <DatabaseIcon />,
       skills: skillsData.databases,
     },
     {
-      key: "tools",
-      title: "Tools",
-      icon: <ToolIcon />,
-      skills: skillsData.tools,
-    },
-    {
-      key: "deployment",
-      title: "Deployment",
+      key: "cloud_devops",
+      title: "Cloud & DevOps",
       icon: <DeployIcon />,
-      skills: skillsData.deployment,
+      skills: skillsData.cloud_devops,
     },
     {
-      key: "ai_ml",
-      title: "AI/ML",
-      icon: <BrainIcon />,
-      skills: skillsData.ai_ml,
+      key: "ecommerce_cms",
+      title: "E-commerce & CMS",
+      icon: <ToolIcon />,
+      skills: skillsData.ecommerce_cms,
     },
   ];
 
@@ -397,13 +380,12 @@ export default function Skills() {
           <footer>
             <p>
               <span>└─$</span>{" "}
-              {skillsData.languages.length +
+              {skillsData.ai_architecture.length +
                 skillsData.frontend.length +
                 skillsData.backend.length +
                 skillsData.databases.length +
-                skillsData.tools.length +
-                skillsData.deployment.length +
-                skillsData.ai_ml.length}{" "}
+                skillsData.cloud_devops.length +
+                skillsData.ecommerce_cms.length}{" "}
               total skills across {categories.length} categories
             </p>
           </footer>

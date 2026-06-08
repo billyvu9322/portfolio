@@ -84,31 +84,18 @@ const About: React.FC = () => {
 
             <div className="ml-3 sm:ml-6 border-l-2 border-green-800/30 pl-3 sm:pl-6">
               <p className="text-gray-300 leading-relaxed text-sm sm:text-base font-light">
-                I&apos;m a{" "}
-                <span className="text-green-400 font-semibold">
-                  Software Developer
-                </span>{" "}
-                with a backend focus, building reliable RESTful APIs and
-                full‑stack applications using MongoDB, Express.js, React,
-                Node.js, and TypeScript, with JWT‑based auth and responsive
-                interfaces in React, Tailwind, HTML/CSS, and EJS. Strong in data
-                modeling with Mongoose, media handling via Cloudinary
-                integration (storage/CDN, not a database), and pragmatic tooling
-                across Git/GitHub, Docker, Postman, and API testing for robust
-                delivery.​ Comfortable augmeting products with AI/ML libraries
-                (TensorFlow, NumPy, pandas) and shipping to Vercel/Render,
-                guided by a build‑to‑learn mindset and ongoing BCA studies (CGPA
-                8.93)..
+                I&apos;m a <span className="text-green-400 font-semibold">passionate and versatile Full-stack Developer</span> with a strong track record of building complex, scalable services and AI-augmented solutions. As a <span className="text-green-400 font-semibold">Microsoft MVP in Developer Technologies</span>, I focus on agentic workflows, multi-tenant architectures, harness design, and robust backend ecosystems using .NET and Node.js. I enjoy dynamic environments where modern AI tooling, cloud infrastructure, and pragmatic engineering can accelerate delivery without sacrificing reliability.
               </p>
 
               <div className="mt-4 sm:mt-6 flex flex-wrap gap-2">
                 {[
-                  "MongoDB",
-                  "Express",
-                  "React",
+                  ".NET",
                   "Node.js",
-                  "JavaScript",
+                  "React TS",
+                  "Next.js",
                   "TypeScript",
+                  "Shopify Plus",
+                  "Agentic Workflows",
                 ].map((tech) => (
                   <span
                     key={tech}
@@ -209,16 +196,10 @@ const About: React.FC = () => {
                     <CodeIcon />
                   </div>
                   <h3 className="font-bold text-green-400 text-base sm:text-lg mb-2 font-mono">
-                    Junior Software Developer @ CHATI
+                    Software Engineer @ Add-On Development
                   </h3>
                   <p className="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-                    Working on AI-powered calling software, building real-time
-                    voice flows on top of{" "}
-                    <span className="text-green-400 font-semibold">WebRTC</span>{" "}
-                    and{" "}
-                    <span className="text-green-400 font-semibold">SIP</span>{" "}
-                    protocols. Hands-on with media negotiation, signaling, and
-                    integrating the AI agent into the live call pipeline.
+                    Designing and implementing <span className="text-green-400 font-semibold">agentic workflows</span>, multi-tenant architectures, and complex system harnesses for production software. Daily work spans .NET, Node.js, cloud infrastructure, and CI/CD pipelines.
                   </p>
                 </div>
               </div>
@@ -231,16 +212,10 @@ const About: React.FC = () => {
                     <SystemIcon />
                   </div>
                   <h3 className="font-bold text-green-400 text-base sm:text-lg mb-2 font-mono">
-                    System Design & Automation
+                    Freelance Delivery & E-commerce
                   </h3>
                   <p className="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-                    Studying{" "}
-                    <span className="text-green-400 font-semibold">
-                      system design
-                    </span>{" "}
-                    and architecture patterns, refactoring old projects to apply
-                    what I learn, and building small automation tools to remove
-                    repetitive work from my day-to-day flow.
+                    Delivering tailored web and e-commerce solutions for clients with a strong focus on scalability and polished UI/UX. Main stack here is Shopify Plus, Wix, React TS, and Next.js.
                   </p>
                 </div>
               </div>

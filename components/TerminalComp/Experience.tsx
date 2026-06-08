@@ -71,13 +71,13 @@ const Experience: React.FC = () => {
                   </div>
                   <div className="min-w-0">
                     <h3 className="text-green-400 font-semibold text-base sm:text-lg font-mono">
-                      CHATI
+                      Add-On Development
                     </h3>
                     <p className="text-gray-400 text-xs sm:text-sm">
                       {duration.chatiTotal}
                     </p>
                     <p className="text-gray-500 text-xs sm:text-sm">
-                      Bhubaneswar, Odisha, India · On-site
+                      Full-time · Nov 2021 — Present
                     </p>
                   </div>
                 </div>
@@ -91,30 +91,24 @@ const Experience: React.FC = () => {
                       className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-green-400 ring-2 ring-black shadow-[0_0_0_2px_rgba(74,222,128,0.35)]"
                     />
                     <h4 className="text-green-400 font-semibold text-sm sm:text-base font-mono">
-                      Junior Software Developer (Lead AI Engineer)
+                      Software Engineer
                     </h4>
                     <p className="text-gray-400 text-xs sm:text-sm">
-                      Full-time
+                      Add-On Development
                     </p>
                     <p className="text-gray-500 text-xs sm:text-sm">
-                      Mar 2026 — Present · {duration.chatiJr}
+                      Nov 2021 — Present · {duration.chatiJr}
                     </p>
 
                     <ul className="mt-3 list-disc list-outside space-y-1 text-gray-300 text-sm sm:text-base ml-4 sm:ml-5">
                       <li>
-                        Product Leadership: Serving as lead developer
-                        architecting a B2B AI Voice Calling SaaS platform for
-                        automated inbound and outbound voice systems.
+                        Designing and implementing agentic workflows for complex, production-scale systems.
                       </li>
                       <li>
-                        Telephony Infrastructure: Engineering high-availability
-                        VoIP infrastructure using FreeSWITCH, ESL, and WebRTC to
-                        orchestrate real-time, low-latency audio streaming.
+                        Building multi-tenant architectures and system harnesses for scalable services.
                       </li>
                       <li>
-                        Voice AI Pipeline: Integrating low-latency STT, LLM
-                        orchestration, and TTS pipelines to deliver human-like
-                        conversational responses during live calls.
+                        Working daily across .NET, Node.js, cloud infrastructure, and CI/CD pipelines.
                       </li>
                     </ul>
                   </li>
@@ -126,30 +120,24 @@ const Experience: React.FC = () => {
                       className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-black border-2 border-green-700"
                     />
                     <h4 className="text-green-400 font-semibold text-sm sm:text-base font-mono">
-                      Software Developer Intern
+                      Intern .NET Developer
                     </h4>
                     <p className="text-gray-400 text-xs sm:text-sm">
-                      Internship
+                      3i Company
                     </p>
                     <p className="text-gray-500 text-xs sm:text-sm">
-                      Oct 2025 — Mar 2026 · {duration.chatiIntern}
+                      Dec 2019 — Jan 2020 · {duration.chatiIntern}
                     </p>
 
                     <ul className="mt-3 list-disc list-outside space-y-1 text-gray-300 text-sm sm:text-base ml-4 sm:ml-5">
                       <li>
-                        AI Meeting Assistant: Built an AI assistant for Zoom,
-                        Teams, and Google Meet that automates recording and
-                        transcript summaries for 500+ active users.
+                        Assisted in developing backend services with ASP.NET and C#.
                       </li>
                       <li>
-                        High-Performance Pipeline: Engineered a batch-processing
-                        system that cleaned, validated, and migrated 1.2M+
-                        records into production in under 10 minutes.
+                        Learned industry-standard software development lifecycles in a professional environment.
                       </li>
                       <li>
-                        Algorithmic Deduplication: Designed a Union–Find based
-                        clustering system to deduplicate related records in near
-                        O(1) time per link.
+                        Built hands-on experience with .NET backend fundamentals and delivery workflows.
                       </li>
                     </ul>
                   </li>
@@ -172,34 +160,23 @@ const Experience: React.FC = () => {
                   </div>
                   <div className="min-w-0">
                     <h3 className="text-green-400 font-semibold text-base sm:text-lg font-mono">
-                      Prominds Digital
+                       iCommerce
                     </h3>
                     <p className="text-gray-400 text-xs sm:text-sm">
-                      Part-time · {duration.promindsTotal}
-                    </p>
-                    <p className="text-gray-500 text-xs sm:text-sm">
-                      Bhubaneswar, Odisha, India
+                       Freelance / Remote · {duration.promindsTotal}
                     </p>
                   </div>
                 </div>
 
                 <ul className="mt-3 list-disc list-outside space-y-1 text-gray-300 text-sm sm:text-base ml-9 sm:ml-12">
                   <li>
-                    Multi-Tenant SaaS Architecture: Architected and shipped
-                    AutoPulse, a scalable B2B CRM for automotive dealerships
-                    featuring granular Role-Based Access Control (RBAC) and
-                    organization-level feature toggles.
+                     Delivering tailored e-commerce and web solutions with strong scalability and optimized UI/UX.
                   </li>
                   <li>
-                    Production Deployment: Successfully deployed the platform
-                    across 5+ active dealerships, processing 5,000+ monthly
-                    visitor entries with production-grade lead pipeline
-                    reliability.
+                     Building across Shopify Plus, Wix, React TS, and Next.js based on client needs.
                   </li>
                   <li>
-                    Automated Messaging &amp; Scaling: Built automated WhatsApp
-                    follow-up workflows and high-throughput CRM data migration
-                    tools using RabbitMQ for message queuing.
+                     Focusing on flexible storefront and business-site delivery for remote freelance clients.
                   </li>
                 </ul>
               </div>

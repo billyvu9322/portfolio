@@ -3,9 +3,9 @@ import { Metadata } from "next";
 // Enhanced SEO Metadata
 export const metadata: Metadata = {
   metadataBase: new URL("https://billyvu.nimo.io.vn"),
-  title: "About Me | Software Developer & Machine Learning Enthusiast",
+  title: "About Me | Full-stack Developer & Microsoft MVP",
   description:
-    "Experienced Software Developer from Bhubaneswar, India specializing in backend development, RESTful APIs, MongoDB, Express.js, React, Node.js, and TypeScript. Currently expanding skills in Machine Learning with TensorFlow and scikit-learn. Building production-ready applications with JWT authentication and cloud deployment. Pursuing BCA at Amity University with CGPA 8.93.",
+    "Passionate and versatile Full-stack Developer with a track record of building complex scalable services and AI-augmented solutions. Microsoft MVP in Developer Technologies specializing in agentic workflows, multi-tenant architecture, .NET, Node.js, React TS, Next.js, Shopify Plus, and Wix.",
   keywords: [
     "Software Developer",
     "Software Developer Bhubaneswar",
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
   creator: "Binh Vu",
   publisher: "Binh Vu",
   openGraph: {
-    title: "About Me | Software Developer & Machine Learning Enthusiast",
+    title: "About Me | Full-stack Developer & Microsoft MVP",
     description:
-      "Software Developer from Bhubaneswar, India specializing in backend development, RESTful APIs, and full-stack applications. Learning Machine Learning and sharing my journey through content creation. Pursuing BCA at Amity University.",
+      "Full-stack Developer and Microsoft MVP in Developer Technologies specializing in agentic workflows, multi-tenant architecture, .NET, Node.js, cloud systems, and scalable e-commerce experiences.",
     type: "profile",
     url: "https://billyvu.nimo.io.vn/about",
     siteName: "Binh Vu - Developer Portfolio",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
         url: "https://billyvu.nimo.io.vn/images/logo.jpg",
         width: 1200,
         height: 630,
-        alt: "Binh Vu - Software Developer & Machine Learning Enthusiast",
+        alt: "Binh Vu - Full-stack Developer & Microsoft MVP",
         type: "image/jpeg",
       },
     ],
@@ -57,9 +57,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@AnupPradhan0",
     creator: "@AnupPradhan0",
-    title: "About Me | Software Developer & Machine Learning Enthusiast",
+    title: "About Me | Full-stack Developer & Microsoft MVP",
     description:
-      "Full-stack MERN developer from Bhubaneswar, India focused on backend development and machine learning. Pursuing BCA at Amity University.",
+      "Full-stack Developer focused on agentic workflows, backend systems, cloud infrastructure, and scalable web experiences.",
     images: ["https://billyvu.nimo.io.vn/images/logo.jpg"],
   },
   robots: {
@@ -133,12 +133,12 @@ const structuredData = {
   mainEntityOfPage: "https://billyvu.nimo.io.vn/about",
   image: "https://billyvu.nimo.io.vn/images/logo.jpg",
   email: "mailto:binhhp20@gmail.com",
-  jobTitle: "Junior Software Developer",
+  jobTitle: "Full-stack Developer",
   description:
-    "Junior Software Developer at CHATI working on AI-powered calling software with WebRTC and SIP. Backend-focused full-stack engineer from Bhubaneswar, India; also a part-time Full Stack / WordPress developer at Prominds Digital. Currently pursuing BCA at Amity University.",
+    "Passionate and versatile Full-stack Developer and Microsoft MVP in Developer Technologies building complex scalable services and AI-augmented solutions with strong depth in .NET, Node.js, agentic workflows, multi-tenant architecture, and modern commerce platforms.",
   worksFor: [
-    { "@type": "Organization", name: "CHATI" },
-    { "@type": "Organization", name: "Prominds Digital" },
+    { "@type": "Organization", name: "Add-On Development" },
+    { "@type": "Organization", name: "iCommerce" },
   ],
   address: {
     "@type": "PostalAddress",
@@ -199,7 +199,7 @@ const structuredData = {
     },
   ],
   skills:
-    "Software Development, Backend Development, AI Calling, WebRTC, SIP, API Development, Machine Learning, MongoDB, Express.js, React, Node.js, Next.js, TypeScript, Python",
+    "Agentic Workflows, AI-Augmented Solutions, Multi-tenant Architecture, Harness Design, .NET Core, ASP.NET, Node.js, React TS, Next.js, Shopify Plus, Wix, CI/CD, Cloud Infrastructure",
   sameAs: [
     "https://github.com/billyvu9322",
     "https://www.linkedin.com/in/tat-binh-vu-7a28a817b/",
@@ -214,7 +214,7 @@ const aboutPageStructuredData = {
   url: "https://billyvu.nimo.io.vn/about",
   name: "About Binh Vu",
   description:
-    "About Binh Vu — Junior Software Developer at CHATI working on AI calling (WebRTC + SIP), part-time at Prominds Digital, and currently learning system design and automation.",
+    "About Binh Vu — Full-stack Developer and Microsoft MVP focused on agentic workflows, multi-tenant systems, robust backend ecosystems, and scalable e-commerce delivery.",
   inLanguage: "en-IN",
   mainEntity: { "@id": "https://billyvu.nimo.io.vn/#person" },
   author: { "@id": "https://billyvu.nimo.io.vn/#person" },
@@ -289,8 +289,7 @@ export default function About() {
                 <span itemProp="name">Binh Vu</span>
               </a>
               {" · "}
-              <span itemProp="jobTitle">Junior Software Developer</span> @{" "}
-              <span itemProp="worksFor">CHATI</span>
+              <span itemProp="jobTitle">Full-stack Developer</span>
               {" · "}
               <a href="mailto:binhhp20@gmail.com" rel="me">
                 binhhp20@gmail.com
@@ -308,32 +307,20 @@ export default function About() {
 
               <div>
                 <p>
-                  I&apos;m a <strong>Junior Software Developer</strong> at
-                  CHATI, working on AI-powered calling software built on{" "}
-                  <strong>WebRTC</strong> and the <strong>SIP</strong> protocol
-                  — real-time voice flows, media negotiation, signaling, and
-                  integrating the AI agent into live calls. Backend-focused
-                  full-stack engineer: reliable RESTful APIs and full‑stack
-                  applications on MongoDB, Express.js, React, Node.js, Next.js,
-                  and TypeScript, with JWT auth and responsive UIs in Tailwind.
-                  Strong on data modeling (Mongoose), media handling
-                  (Cloudinary), and pragmatic tooling (Git, Docker, Postman).
-                  Also part-time at Prominds Digital as Full Stack / WordPress
-                  developer. Comfortable augmenting products with AI/ML
-                  libraries (TensorFlow, NumPy, pandas) and shipping to
-                  Vercel/Render. Pursuing BCA at Amity University (CGPA 8.93).
+                  I&apos;m a <strong>passionate and versatile Full-stack Developer</strong> with a strong track record of building complex, scalable services and cutting-edge AI-augmented solutions. As a <strong>Microsoft MVP in Developer Technologies</strong>, I specialize in agentic workflows, multi-tenant architectures, and robust backend ecosystems using .NET and Node.js. I thrive in dynamic environments, blending technical precision with modern AI tools to accelerate development.
                 </p>
 
                 <div role="list" aria-label="Technical skills">
                   {[
-                    "WebRTC",
-                    "SIP",
+                    ".NET",
+                    "Agentic Workflows",
                     "Node.js",
-                    "TypeScript",
+                    "Cloud Infrastructure",
+                    "CI/CD",
+                    "Shopify Plus",
+                    "Wix",
+                    "React TS",
                     "Next.js",
-                    "MongoDB",
-                    "Express",
-                    "React",
                   ].map((tech) => (
                     <span key={tech} role="listitem">
                       {tech}
@@ -427,18 +414,14 @@ export default function About() {
               </div>
 
               <div>
-                {/* Junior SWE @ CHATI */}
+                {/* Software Engineer @ Add-On Development */}
                 <article>
                   <div>
                     <CodeIcon />
                   </div>
-                  <h3>Junior Software Developer @ CHATI</h3>
+                  <h3>Software Engineer @ Add-On Development</h3>
                   <p>
-                    Working on AI-powered calling software, building real-time
-                    voice flows on top of <strong>WebRTC</strong> and the{" "}
-                    <strong>SIP</strong> protocol. Day-to-day is hands-on with
-                    media negotiation, signaling, and integrating the AI agent
-                    into the live call pipeline.
+                    Designing and implementing <strong>agentic workflows</strong>, multi-tenant architectures, and complex system harnesses using .NET, Node.js, cloud infrastructure, and CI/CD pipelines.
                   </p>
                 </article>
 
@@ -447,10 +430,9 @@ export default function About() {
                   <div>
                     <SystemIcon />
                   </div>
-                  <h3>System Design &amp; Automation</h3>
+                  <h3>Freelance Web Developer @ iCommerce</h3>
                   <p>
-                    Studying <strong>system design</strong> and architecture
-                    patterns, refactoring older projects to apply what I learn,
+                    Delivering tailored e-commerce and web solutions with high scalability and optimized UI/UX across <strong>Shopify Plus</strong>, <strong>Wix</strong>, <strong>React TS</strong>, and <strong>Next.js</strong>.
                     and building small automation tools to remove repetitive
                     work from my day-to-day flow.
                   </p>

@@ -135,70 +135,62 @@ export const projects: Project[] = [
 // ---------------------------------------------------------------------------
 
 export interface SkillsCategory {
-  languages: string[];
-  frontend: string[];
+  ai_architecture: string[];
   backend: string[];
+  frontend: string[];
   databases: string[];
-  tools: string[];
-  deployment: string[];
-  ai_ml: string[];
+  cloud_devops: string[];
+  ecommerce_cms: string[];
 }
 
 export const skills: SkillsCategory = {
-  languages: ["JavaScript (ES6+)", "TypeScript", "Python", "C++", "HTML5", "CSS3"],
-  frontend: ["React", "Next.js", "Remix", "TanStack Query", "Tailwind CSS", "EJS", "Vite"],
-  backend: ["Node.js", "Express.js", "FastAPI", "REST APIs", "OAuth 2.0", "JWT"],
+  ai_architecture: [
+    "Agentic Workflows",
+    "AI-Augmented Solutions",
+    "Multi-tenant Architecture",
+    "Harness Design",
+  ],
+  backend: [
+    ".NET Core",
+    "ASP.NET",
+    "Node.js",
+    "Fastify",
+    "Express.js",
+    "Python",
+    "Microservices",
+    "BDD/TDD",
+  ],
+  frontend: ["React TS", "Next.js", "JavaScript", "TypeScript"],
   databases: [
-    "MongoDB",
-    "Mongoose",
-    "MongoDB Atlas",
-    "RabbitMQ",
+    "SQL Server",
+    "MySQL",
     "Redis",
     "PostgreSQL",
-    "VectorDB",
-    "Weaviate",
-    "Neo4j",
+    "MongoDB",
+    "ElasticSearch",
   ],
-  tools: [
-    "Git & GitHub",
+  cloud_devops: [
     "Docker",
-    "Kubernetes",
-    "Postman",
-    "Linux/CLI",
-    "Claude Code",
-    "OpenCode",
-    "Ubuntu",
-    "Arch Linux",
-  ],
-  deployment: [
-    "AWS S3",
     "Azure",
-    "GCP",
-    "VPS (Virtual Private Server)",
-    "Vercel",
-    "Render",
-    "Dokploy",
+    "AWS",
+    "Google Cloud",
+    "CI/CD",
+    "Docker",
+    "Nginx",
+    "Cloudflare",
+    "Service Bus",
   ],
-  ai_ml: [
-    "Pandas",
-    "NumPy",
-    "PyTorch",
-    "TensorFlow",
-    "RAG (Retrieval-Augmented Generation)",
-    "Tool Calling",
-    "MCP (Model Context Protocol)",
-  ],
+  ecommerce_cms: ["Shopify Plus", "Wix"],
 };
 
 // Faux shell command shown above each skill category.
 export const skillCommands: Record<keyof SkillsCategory, string> = {
-  languages: "ls -la /skills/languages/",
-  frontend: "cat /skills/frontend/stack.txt",
+  ai_architecture: "cat /skills/architecture/agents.md",
   backend: "ps aux | grep backend",
+  frontend: "cat /skills/frontend/stack.txt",
   databases: "show databases;",
-  tools: "which --all tools",
-  deployment: "kubectl get deployments -A",
-  ai_ml: "python -m pip list | grep ai",
+  cloud_devops: "kubectl get deployments -A",
+  ecommerce_cms: "ls /skills/ecommerce/",
 };
 
 // ---------------------------------------------------------------------------
@@ -228,7 +220,7 @@ export const socialLinks: SocialLinkData[] = [
 // the visible "X mos" labels stay current without manual edits each month.
 // ---------------------------------------------------------------------------
 
-export const CHATI_INTERN_START = new Date(2025, 9, 1); // Oct 2025
-export const CHATI_INTERN_END = new Date(2026, 2, 1); // Mar 2026 (promotion)
-export const CHATI_JR_START = new Date(2026, 2, 1); // Mar 2026
-export const PROMINDS_START = new Date(2025, 3, 1); // Apr 2025
+export const CHATI_INTERN_START = new Date(2019, 11, 1); // Dec 2019
+export const CHATI_INTERN_END = new Date(2020, 0, 1); // Jan 2020
+export const CHATI_JR_START = new Date(2021, 10, 1); // Nov 2021
+export const PROMINDS_START = new Date(2022, 11, 1); // Dec 2022

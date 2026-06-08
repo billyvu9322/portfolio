@@ -18,17 +18,16 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_BASE_URL ||
-    (process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "https://billyvu.nimo.io.vn")
+      (process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "https://billyvu.nimo.io.vn"),
   ),
   icons: {
     icon: "/images/logo.jpg",
     apple: "/images/logo.jpg",
   },
   title: {
-    default:
-      "Binh Vu | Software Developer & Machine Learning Enthusiast",
+    default: "Binh Vu | Full-stack Developer & Microsoft MVP",
     template: "%s | Binh Vu",
   },
   description:
@@ -102,7 +101,10 @@ export const metadata: Metadata = {
     canonical: "https://billyvu.nimo.io.vn",
     types: {
       "application/rss+xml": [
-        { url: "https://billyvu.nimo.io.vn/blog/rss.xml", title: "Binh Vu — Blog RSS" },
+        {
+          url: "https://billyvu.nimo.io.vn/blog/rss.xml",
+          title: "Binh Vu — Blog RSS",
+        },
       ],
     },
   },
@@ -116,8 +118,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
+    <html lang="en" suppressHydrationWarning>
+      <head suppressHydrationWarning>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, viewport-fit=cover"
@@ -144,7 +146,8 @@ export default function RootLayout({
           href="https://billyvu.nimo.io.vn/blog/rss.xml"
         />
         <script
-          type="application/ld+json"
+          suppressHydrationWarning
+          type="text/javascript"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -163,6 +166,7 @@ export default function RootLayout({
         />
       </head>
       <body
+        suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}

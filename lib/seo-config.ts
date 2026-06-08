@@ -1,7 +1,7 @@
 /** Shared site SEO constants — single source of truth for URLs and author. */
 export const SITE_URL = "https://billyvu.nimo.io.vn";
 export const SITE_NAME = "Binh Vu";
-export const SITE_TAGLINE = "Software Developer & Machine Learning Enthusiast";
+export const SITE_TAGLINE = "Full-stack Developer & Microsoft MVP";
 export const AUTHOR_URL = SITE_URL;
 export const TWITTER_HANDLE = "@AnupPradhan0";
 export const DEFAULT_OG_IMAGE = "/images/logo.jpg";

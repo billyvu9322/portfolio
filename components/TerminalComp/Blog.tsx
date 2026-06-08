@@ -39,7 +39,7 @@ interface BlogProps {
 function rankRecommendations(
   current: PostMeta,
   pool: PostMeta[],
-  limit = 3
+  limit = 3,
 ): PostMeta[] {
   const currentTags = new Set(current.tags ?? []);
   return pool
@@ -47,7 +47,7 @@ function rankRecommendations(
     .map((p) => {
       const overlap = (p.tags ?? []).reduce(
         (acc, t) => acc + (currentTags.has(t) ? 1 : 0),
-        0
+        0,
       );
       return { post: p, overlap };
     })
@@ -216,7 +216,6 @@ const Blog: React.FC<BlogProps> = ({
   const router = useRouter();
   const [internalSlug, setInternalSlug] = useState<string | null>(null);
   const activeSlug = syncUrls ? slugProp : internalSlug;
-
   const [posts, setPosts] = useState<PostMeta[]>([]);
   const [listState, setListState] = useState<LoadState>("loading");
   const [post, setPost] = useState<FullPost | null>(null);

@@ -24,7 +24,7 @@ import "@/public/css/IdentityComp.css";
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 useGLTF.preload("/models/card.glb");
-useTexture.preload("/images/lanyard.jpg");
+useTexture.preload("/images/binhhp.jpg");
 
 type LerpedBody = RapierRigidBody & { lerped?: THREE.Vector3 };
 
@@ -37,7 +37,12 @@ export default function Tag() {
   return (
     <div
       className="identity-container"
-      style={{ height: "100%", width: "100%", position: "relative", backgroundColor: "transparent" }}
+      style={{
+        height: "100%",
+        width: "100%",
+        position: "relative",
+        backgroundColor: "transparent",
+      }}
     >
       <Canvas
         camera={{ position: [0, 0, 13], fov: 25 }}
@@ -123,7 +128,9 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
     linearDamping: 2,
   };
 
-  const { nodes, materials } = useGLTF("/models/card.glb") as unknown as GLTFCardResult;
+  const { nodes, materials } = useGLTF(
+    "/models/card.glb",
+  ) as unknown as GLTFCardResult;
   const texture = useTexture("/images/lanyard.jpg");
 
   const { width, height } = useThree((state) => state.size);
@@ -143,7 +150,10 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
   useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
   useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]);
   useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1]);
-  useSphericalJoint(j3, card, [[0, 0, 0], [0, 1.45, 0]]);
+  useSphericalJoint(j3, card, [
+    [0, 0, 0],
+    [0, 1.45, 0],
+  ]);
 
   useEffect(() => {
     if (hovered) {
@@ -154,7 +164,9 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
 
   useEffect(() => {
     if (band.current?.geometry) {
-      (band.current.geometry as MeshLineGeometry).setPoints(curve.getPoints(32));
+      (band.current.geometry as MeshLineGeometry).setPoints(
+        curve.getPoints(32),
+      );
     }
   }, [curve]);
 
@@ -185,22 +197,27 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
         }
         const clampedDistance = Math.max(
           0.1,
-          Math.min(1, body.lerped.distanceTo(body.translation()))
+          Math.min(1, body.lerped.distanceTo(body.translation())),
         );
         body.lerped.lerp(
           body.translation(),
-          delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed))
+          delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed)),
         );
       });
       curve.points[0].copy(j3.current.translation());
       curve.points[1].copy(j2.current.lerped!);
       curve.points[2].copy(j1.current.lerped!);
       curve.points[3].copy(fixed.current.translation());
-      (band.current.geometry as MeshLineGeometry).setPoints(curve.getPoints(32));
+      (band.current.geometry as MeshLineGeometry).setPoints(
+        curve.getPoints(32),
+      );
       if (card.current) {
         ang.copy(card.current.angvel());
         rot.copy(card.current.rotation());
-        card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z }, true);
+        card.current.setAngvel(
+          { x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z },
+          true,
+        );
       }
     }
   });
@@ -240,7 +257,7 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
               drag(
                 new THREE.Vector3()
                   .copy(e.point)
-                  .sub(vec.copy(card.current.translation()))
+                  .sub(vec.copy(card.current.translation())),
               );
             }}
           >

@@ -476,7 +476,7 @@
 /* ===== Live slash-command suggestion popup (Claude-Code style) ===== */
 .cmd-suggest {
   position: absolute;
-  bottom: calc(100% + 0.4rem);
+  bottom: 0;
   left: 0;
   width: min(30rem, 95%);
   max-height: 16rem;

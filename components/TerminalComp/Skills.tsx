@@ -102,17 +102,6 @@ const DeployIcon: React.FC = () => (
   </svg>
 );
 
-const BrainIcon: React.FC = () => (
-  <svg
-    className="w-5 h-5"
-    fill="currentColor"
-    viewBox="0 0 24 24"
-    aria-hidden="true"
-  >
-    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-  </svg>
-);
-
 // Typing animation hook
 const useTypewriter = (text: string, speed: number = 50): TypewriterResult => {
   const [displayText, setDisplayText] = useState<string>("");
@@ -304,7 +293,7 @@ const MatrixBackground: React.FC = () => {
 // Main Skills component
 const Skills: React.FC = () => {
   const [activeCategory, setActiveCategory] =
-    useState<keyof SkillsCategory>("languages");
+    useState<keyof SkillsCategory>("ai_architecture");
   const [terminalStarted, setTerminalStarted] = useState<boolean>(false);
 
   useEffect(() => {
@@ -314,46 +303,40 @@ const Skills: React.FC = () => {
 
   const categories: CategoryConfig[] = [
     {
-      key: "languages",
-      title: "Languages",
+      key: "ai_architecture",
+      title: "AI & Architecture",
       icon: <CodeIcon />,
-      skills: skillsData.languages,
-    },
-    {
-      key: "frontend",
-      title: "Frontend",
-      icon: <LayersIcon />,
-      skills: skillsData.frontend,
+      skills: skillsData.ai_architecture,
     },
     {
       key: "backend",
-      title: "Backend",
+      title: "Backend Development",
       icon: <ServerIcon />,
       skills: skillsData.backend,
     },
     {
+      key: "frontend",
+      title: "Frontend Development",
+      icon: <LayersIcon />,
+      skills: skillsData.frontend,
+    },
+    {
       key: "databases",
-      title: "Databases",
+      title: "Databases & Caching",
       icon: <DatabaseIcon />,
       skills: skillsData.databases,
     },
     {
-      key: "tools",
-      title: "Tools",
-      icon: <ToolIcon />,
-      skills: skillsData.tools,
-    },
-    {
-      key: "deployment",
-      title: "Deployment",
+      key: "cloud_devops",
+      title: "Cloud & DevOps",
       icon: <DeployIcon />,
-      skills: skillsData.deployment,
+      skills: skillsData.cloud_devops,
     },
     {
-      key: "ai_ml",
-      title: "AI/ML",
-      icon: <BrainIcon />,
-      skills: skillsData.ai_ml,
+      key: "ecommerce_cms",
+      title: "E-commerce & CMS",
+      icon: <ToolIcon />,
+      skills: skillsData.ecommerce_cms,
     },
   ];
 

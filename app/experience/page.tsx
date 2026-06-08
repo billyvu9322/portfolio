@@ -17,15 +17,15 @@ export const revalidate = 86400;
 // SEO Metadata for Experience page
 export const metadata: Metadata = {
   metadataBase: new URL("https://billyvu.nimo.io.vn"),
-  title: "Experience | Junior Software Developer (Lead AI Engineer) @ CHATI · FreeSWITCH + WebRTC",
+  title: "Experience | Software Engineer · Add-On Development · iCommerce",
   description:
-    "Experience of Binh Vu: Junior Software Developer (Lead AI Engineer) at CHATI (Mar 2026–Present) architecting a B2B AI Voice Calling SaaS with FreeSWITCH, ESL, and WebRTC; part-time at Prominds Digital — shipped AutoPulse, a multi-tenant B2B CRM for automotive dealerships with RBAC, WhatsApp automation, and RabbitMQ.",
+    "Experience of Binh Vu: Software Engineer at Add-On Development designing agentic workflows, multi-tenant architectures, and complex system harnesses; Freelance Web Developer at iCommerce delivering scalable e-commerce and web solutions; former Intern .NET Developer at 3i Company.",
   keywords: [
     "Binh Vu Experience",
     "Junior Software Developer",
     "Lead AI Engineer",
-    "Junior Software Developer CHATI",
-    "Software Developer Intern CHATI",
+    "Software Engineer Add-On Development",
+    "Intern .NET Developer 3i Company",
     "Software Developer Bhubaneswar",
     "AI Voice Calling SaaS",
     "FreeSWITCH Developer",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     "STT TTS LLM Pipeline",
     "AI Meeting Assistant",
     "AutoPulse CRM",
-    "Prominds Digital",
+    "iCommerce",
     "Backend Developer India",
     "Data Pipeline Engineer",
     "Union-Find Deduplication",
@@ -46,9 +46,9 @@ export const metadata: Metadata = {
   creator: "Binh Vu",
   publisher: "Binh Vu",
   openGraph: {
-    title: "Experience | Junior Software Developer (Lead AI Engineer) @ CHATI · FreeSWITCH + WebRTC",
+    title: "Experience | Software Engineer · Add-On Development · iCommerce",
     description:
-      "Junior Software Developer (Lead AI Engineer) at CHATI (Mar 2026–Present) — B2B AI Voice Calling SaaS on FreeSWITCH + WebRTC. Part-time at Prominds Digital — AutoPulse B2B CRM.",
+      "Software Engineer at Add-On Development, Freelance Web Developer at iCommerce, and former Intern .NET Developer at 3i Company.",
     type: "profile",
     url: "https://billyvu.nimo.io.vn/experience",
     siteName: "Binh Vu - Developer Portfolio",
@@ -67,9 +67,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@AnupPradhan0",
     creator: "@AnupPradhan0",
-    title: "Experience | Junior Software Developer (Lead AI Engineer) @ CHATI · FreeSWITCH + WebRTC",
+    title: "Experience | Software Engineer · Add-On Development · iCommerce",
     description:
-      "Junior Software Developer (Lead AI Engineer) at CHATI — B2B AI Voice Calling SaaS on FreeSWITCH + WebRTC. Part-time at Prominds Digital — AutoPulse B2B CRM.",
+      "Software Engineer at Add-On Development, Freelance Web Developer at iCommerce, and former Intern .NET Developer at 3i Company.",
     images: ["https://billyvu.nimo.io.vn/images/logo.jpg"],
   },
   robots: {
@@ -107,15 +107,15 @@ function buildStructuredData() {
     url: SITE_URL,
     mainEntityOfPage: `${SITE_URL}/experience`,
     image: `${SITE_URL}/images/logo.jpg`,
-    jobTitle: "Junior Software Developer (Lead AI Engineer)",
+  jobTitle: "Software Engineer",
     hasOccupation: [
       {
         "@type": "EmployeeRole",
-        roleName: "Junior Software Developer (Lead AI Engineer)",
+        roleName: "Software Engineer",
         startDate: toIso(CHATI_JR_START),
         worksFor: {
           "@type": "Organization",
-          name: "CHATI",
+            name: "Add-On Development",
           address: {
             "@type": "PostalAddress",
             addressLocality: "Bhubaneswar",
@@ -126,18 +126,18 @@ function buildStructuredData() {
       },
       {
         "@type": "EmployeeRole",
-        roleName: "Software Developer Intern",
+        roleName: "Intern .NET Developer",
         startDate: toIso(CHATI_INTERN_START),
         endDate: toIso(CHATI_INTERN_END),
-        worksFor: { "@type": "Organization", name: "CHATI" },
+        worksFor: { "@type": "Organization", name: "3i Company" },
       },
       {
         "@type": "EmployeeRole",
-        roleName: "Part-time Developer",
+        roleName: "Freelance Web Developer",
         startDate: toIso(PROMINDS_START),
         worksFor: {
           "@type": "Organization",
-          name: "Prominds Digital",
+          name: "iCommerce",
           address: {
             "@type": "PostalAddress",
             addressLocality: "Bhubaneswar",
@@ -199,10 +199,7 @@ export default function Experience() {
               Experience
             </h1>
             <p>
-              Professional roles as a Software Developer at CHATI and Prominds
-              Digital — architecting B2B AI Voice Calling SaaS on FreeSWITCH/WebRTC,
-              scalable multi-tenant CRM for automotive dealerships, and large-scale
-              data pipelines.
+              Professional roles across Add-On Development, iCommerce, and 3i Company — spanning agentic workflows, multi-tenant architecture, scalable web delivery, and .NET backend foundations.
             </p>
           </header>
 
@@ -215,38 +212,32 @@ export default function Experience() {
             >
               <header>
                 <h2 id="chati-heading" itemProp="name">
-                  CHATI
+                  Add-On Development
                 </h2>
                 <p>
                   <strong>{chatiTotal}</strong> · Bhubaneswar, Odisha, India ·
-                  On-site
+                  Full-time
                 </p>
               </header>
 
               {/* Junior Software Developer — Lead AI Engineer (current) */}
               <section aria-labelledby="chati-jr-heading">
                 <h3 id="chati-jr-heading">
-                  Junior Software Developer (Lead AI Engineer) · Full-time
+                  Software Engineer · Full-time
                 </h3>
                 <p>
-                  <time dateTime={toIso(CHATI_JR_START)}>Mar 2026</time> —
+                  <time dateTime={toIso(CHATI_JR_START)}>Nov 2021</time> —
                   Present · {chatiJr}
                 </p>
                 <ul itemProp="description">
                   <li>
-                    Product Leadership: Serving as lead developer architecting a
-                    B2B AI Voice Calling SaaS platform for automated inbound and
-                    outbound voice systems.
+                    Designing and implementing agentic workflows for complex software systems.
                   </li>
                   <li>
-                    Telephony Infrastructure: Engineering high-availability VoIP
-                    infrastructure using FreeSWITCH, ESL, and WebRTC to
-                    orchestrate real-time, low-latency audio streaming.
+                    Building multi-tenant architectures and system harnesses for scalable services.
                   </li>
                   <li>
-                    Voice AI Pipeline: Integrating low-latency STT, LLM
-                    orchestration, and TTS pipelines to deliver human-like
-                    conversational responses during live calls.
+                    Working with .NET, Node.js, cloud infrastructure, and CI/CD pipelines in production environments.
                   </li>
                 </ul>
               </section>
@@ -254,28 +245,22 @@ export default function Experience() {
               {/* Software Developer Intern */}
               <section aria-labelledby="chati-intern-heading">
                 <h3 id="chati-intern-heading">
-                  Software Developer Intern · Internship
+                  Intern .NET Developer
                 </h3>
                 <p>
-                  <time dateTime={toIso(CHATI_INTERN_START)}>Oct 2025</time> —{" "}
-                  <time dateTime={toIso(CHATI_INTERN_END)}>Mar 2026</time> ·{" "}
+                  <time dateTime={toIso(CHATI_INTERN_START)}>Dec 2019</time> —{" "}
+                  <time dateTime={toIso(CHATI_INTERN_END)}>Jan 2020</time> ·{" "}
                   {chatiIntern}
                 </p>
                 <ul itemProp="description">
                   <li>
-                    AI Meeting Assistant: Built an AI assistant for Zoom, Teams,
-                    and Google Meet that automates recording and transcript
-                    summaries for 500+ active users.
+                    Assisted in developing backend services using ASP.NET and C#.
                   </li>
                   <li>
-                    High-Performance Pipeline: Engineered a batch-processing
-                    system that cleaned, validated, and migrated 1.2M+ records
-                    into production in under 10 minutes.
+                    Learned industry-standard software development lifecycles in a professional setting.
                   </li>
                   <li>
-                    Algorithmic Deduplication: Designed a Union–Find based
-                    clustering system to deduplicate related records in near
-                    O(1) time per link.
+                    Built practical experience in .NET backend development and delivery workflows.
                   </li>
                 </ul>
               </section>
@@ -289,31 +274,22 @@ export default function Experience() {
             >
               <header>
                 <h2 id="prominds-heading" itemProp="name">
-                  Prominds Digital
+                  iCommerce
                 </h2>
                 <p>
-                  <strong>Part-time · {promindsTotal}</strong> · Bhubaneswar,
-                  Odisha, India
+                  <strong>Freelance / Remote · {promindsTotal}</strong>
                 </p>
               </header>
 
               <ul itemProp="description">
                 <li>
-                  Multi-Tenant SaaS Architecture: Architected and shipped
-                  AutoPulse, a scalable B2B CRM for automotive dealerships
-                  featuring granular Role-Based Access Control (RBAC) and
-                  organization-level feature toggles.
+                  Delivering tailored e-commerce and web solutions with strong scalability and optimized UI/UX.
                 </li>
                 <li>
-                  Production Deployment: Successfully deployed the platform
-                  across 5+ active dealerships, processing 5,000+ monthly
-                  visitor entries with production-grade lead pipeline
-                  reliability.
+                  Building with Shopify Plus, Wix, React TS, and Next.js based on client needs.
                 </li>
                 <li>
-                  Automated Messaging &amp; Scaling: Built automated WhatsApp
-                  follow-up workflows and high-throughput CRM data migration
-                  tools using RabbitMQ for message queuing.
+                  Focusing on scalable storefront and website experiences for freelance clients.
                 </li>
               </ul>
             </article>
